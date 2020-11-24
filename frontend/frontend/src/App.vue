@@ -1,49 +1,71 @@
 <template>
   <div id="app">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
           <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav mr-auto">
                   <li class="nav-item active">
-                      <a class="nav-link" href="#"> Medicamentos <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" @click="ingresar1" href="#"> Medicamentos <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#"> Casas Medicas </a>
+                      <a class="nav-link" @click="ingresar2" href="#"> Casas Medicas </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#"> Proveedores </a>
+                      <a class="nav-link" @click="ingresar3" href="#"> Proveedores </a>
                   </li>
               </ul>
           </div>
       </nav>
-    <!-- <HelloWorld/> -->
-    <CompanyData/> <!-- Added New tag -->
+    <CompanyData v-if="primera"/>
+    <Casa v-if="segunda"/>
+    <Proveedores v-if="tercera"/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
-import CompanyData from './components/Comp' //import new component
+import CompanyData from './components/Comp'
+import Casa from './components/Casa'
+import Proveedores from './components/Proveedores'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld,
-    CompanyData //register new component
-  }
+    name: 'App',
+    data(){
+        return{
+            primera:true,
+            segunda:false,
+            tercera:false,
+        }
+    },
+    components: {
+        HelloWorld,
+        CompanyData,
+        Casa,
+        Proveedores,
+    },
+	methods:{
+        ingresar1(){
+            this.primera=true
+            this.segunda=false
+            this.tercera=false
+        },
+        ingresar2(){
+            this.segunda=true
+            this.primera=false
+            this.tercera=false
+        },
+        ingresar3(){
+            this.tercera=true
+            this.segunda=false
+            this.primera=false
+        },
+    }
+
 }
 </script>
 
 <style>
-@import "../node_modules/bootstrap/dist/css/bootstrap.min.css"; /*Importing Bootstrap*/
+
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 #app {
-/*  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;*/
 }
 </style>
