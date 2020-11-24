@@ -26,7 +26,7 @@
     },
     async mounted () {
     	try {
-	var result = await axios({
+	        var result = await axios({
 		method: 'POST',
 		url: 'http://127.0.0.1:8000/graphql/',
 		data: {

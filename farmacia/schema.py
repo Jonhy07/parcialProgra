@@ -48,7 +48,7 @@ class CreateMedicamento(graphene.relay.ClientIDMutation):
     def mutate_and_get_payload(root, info, **input):
 
         medicamento = Medicamento(
-            medicamento_nombre=input.get('nombre_medicamento'),
+            medicamento_nombre=input.get('medicamento_nombre'),
             medicamento_proveedor=Proveedor.objects.get(proveedor_nombre=input.get('medicamento_proveedor')),
             medicamento_casa= CasaMedica.objects.get(casa_medica=input.get('medicamento_casa'))
         )
