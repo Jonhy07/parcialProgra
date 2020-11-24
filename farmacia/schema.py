@@ -27,18 +27,18 @@ class MedicamentoNode(DjangoObjectType):
         interfaces = (graphene.relay.Node,)
 
 class CreateCasa(graphene.relay.ClientIDMutation):
-    casa = graphene.Field(CasaMedicaNode)
+    casa_medica = graphene.Field(CasaMedicaNode)
     class Input:
         casa_medica = graphene.String()
     def mutate_and_get_payload(root, info, **input):
-        casa = CasaMedica(
+        casa_medica = CasaMedica(
             casa_medica=input.get('casa_medica')
         )
-        casa.save()
-        return CreateCasa(casa=casa)
+        casa_medica.save()
+        return CreateCasa(casa_medica=casa_medica)
 
 class CreateMedicamento(graphene.relay.ClientIDMutation):
-    medicamento = graphene.Field(ProveedorNode)
+    medicamento = graphene.Field(MedicamentoNode)
 
     class Input:
         medicamento_nombre = graphene.String()
